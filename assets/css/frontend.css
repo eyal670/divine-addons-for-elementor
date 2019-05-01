@@ -1,0 +1,17 @@
+/*add your CSS for frontend looks functionality*/
+.list-grid-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.list-grid-wrapper > .list-item-wrapper {
+    margin: 10px;
+}
+.screensize_toggle {
+    position: absolute;
+    top: 40px;
+    right: 80px;
+    color: #fff;
+    font-size: 29px;
+    cursor: pointer;
+}
