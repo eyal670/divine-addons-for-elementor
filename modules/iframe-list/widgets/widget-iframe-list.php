@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Widget_Popular_Posts extends Widget_Base {
 
 	public function get_categories() {
-		return [ 'Divine' ];
+		return [ 'basic' ];
 	}
 
 	public function get_name() {
@@ -15,7 +15,7 @@ class Widget_Popular_Posts extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'Divine Iframe List', 'elementor-custom-widget' );
+		return __( 'Divine Iframe Grid', 'elementor-custom-widget' );
 	}
 
 	public function get_icon() {
