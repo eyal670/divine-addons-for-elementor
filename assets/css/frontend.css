@@ -7,10 +7,17 @@
 .list-grid-wrapper > .list-item-wrapper {
     margin: 10px;
 }
-.screensize_toggle {
+.screensize_btns_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.screensize_btns_wrapper .screensize_toggle {
+    margin-bottom: 14px;
+}
+.screensize_btns_wrapper {
     position: absolute;
-    top: 40px;
-    right: 80px;
+    top: 90px;
+    right: 22px;
     color: #fff;
     font-size: 29px;
     cursor: pointer;

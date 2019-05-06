@@ -2,26 +2,34 @@ jQuery(document).ready(function() {
   //console.log('runtime.js is running');
   /*init lightbox*/
   var tobi = new Tobi();
-  jQuery('.tobi__close').after('<span class=\"screensize_toggle fas fa-desktop\"></span>');
+  jQuery('.tobi__close').after(`
+      <div class="screensize_btns_wrapper">
+        <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
+        <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
+        <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
+      </div>
+    `);
 
   /*add screen size preview btn*/
-  jQuery('.screensize_toggle').toggle(function(){
-    jQuery(this).removeClass('fa-desktop');
-    jQuery(this).addClass('fa-tablet-alt');
+  jQuery('.screensize_toggle_desktop').click(function(){
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
     jQuery('iframe').animate({
-      'max-width':'750px'
+      'width':'85vw'
     });
-  },function(){
-    jQuery(this).removeClass('fa fa-tablet-alt');
-    jQuery(this).addClass('fas fa-mobile-alt');
+  });
+  jQuery('.screensize_toggle_tablet').click(function(){
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
     jQuery('iframe').animate({
-      'max-width':'450px'
+      'width':'750px'
     });
-  },function(){
-    jQuery(this).removeClass('fa fa-mobile-alt');
-    jQuery(this).addClass('fas fa-desktop');
+  });
+  jQuery('.screensize_toggle_mobile').click(function(){
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
     jQuery('iframe').animate({
-      'max-width':'1400px'
+      'width':'450px'
     });
   });
 
