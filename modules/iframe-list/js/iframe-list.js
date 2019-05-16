@@ -1,5 +1,6 @@
 jQuery(document).ready(function() {
-  //console.log('runtime.js is running');
+  console.log('runtime.js is running');
+  console.log('tobi: '+  jQuery.isFunction(Tobi));
   /*init lightbox*/
   var tobi = new Tobi();
   jQuery('.tobi__close').after(`

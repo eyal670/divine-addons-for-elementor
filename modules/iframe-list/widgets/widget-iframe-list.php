@@ -215,7 +215,12 @@ class Widget_Popular_Posts extends Widget_Base {
 			echo '</div>';
 		}
 		// init iframe list js
-		wp_enqueue_script('iframe-list-js', plugin_dir_url( __FILE__ ) . '../js/iframe-list.js', array(), '1.0.0', 'true' );
+		// enqueue tobi lightbox style/script
+		echo '<link rel="stylesheet" id="divine-tobi-lightbox-style-css" href="'.plugin_dir_url( __FILE__ ) . '../../../assets/tobi-lightbox/tobi.min.css'.'" type="text/css" media="all">';
+		echo '<script type="text/javascript" src="'.plugin_dir_url( __FILE__ ) . '../../../assets/tobi-lightbox/tobi.min.js'.'"></script>';
+		// enqueue custom widget script script
+		echo '<script type="text/javascript" src="'.plugin_dir_url( __FILE__ ) . '../js/iframe-list.js'.'"></script>';
+		// wp_enqueue_script('iframe-list-js', plugin_dir_url( __FILE__ ) . '../js/iframe-list.js', array(), '1.0.0', 'true' );
 	}
 
 	protected function _content_template() {
