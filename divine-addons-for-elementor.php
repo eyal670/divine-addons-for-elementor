@@ -20,3 +20,6 @@ function dae_require_files() {
 //     wp_enqueue_style( 'divine-tobi-lightbox-style', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.css');
 //     wp_enqueue_script( 'divine-tobi-lightbox-script', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.js', array('jquery'), '1.0');
 // }
+
+// init iframe list js
+// enqueue tobi lightbox style/script
