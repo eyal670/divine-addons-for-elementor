@@ -1,1 +1,5 @@
 /* add your CSS for editor functionality */
+.elementor-editor-active .img-wrapper {
+    max-height: 400px;
+    overflow: hidden;
+}
