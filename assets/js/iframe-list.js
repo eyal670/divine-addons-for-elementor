@@ -6,9 +6,9 @@ jQuery(document).ready(function() {
     var tobi = new Tobi();
     jQuery('.tobi__close').after(`
       <div class="screensize_btns_wrapper">
-      <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
-      <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
-      <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
+      <span class=\"screensize_toggle screensize_toggle_desktop dashicons dashicons-desktop\"></span>
+      <span class=\"screensize_toggle screensize_toggle_tablet dashicons dashicons-tablet\"></span>
+      <span class=\"screensize_toggle screensize_toggle_mobile dashicons dashicons-smartphone\"></span>
       </div>
       `);
 

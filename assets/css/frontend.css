@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 .screensize_btns_wrapper .screensize_toggle {
-    margin-bottom: 14px;
+    margin-bottom: 22px;
 }
 .screensize_btns_wrapper {
     position: absolute;
@@ -21,4 +21,7 @@
     color: #fff;
     font-size: 29px;
     cursor: pointer;
+}
+.screensize_toggle {
+    font-size: 35px;
 }
