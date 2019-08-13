@@ -182,7 +182,7 @@ class Widget_Popular_Posts extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		if ( $settings['list'] ) {
-			echo '<div class="list-grid-wrapper">';
+			echo '<div class="divine-iframes-grid list-grid-wrapper">';
 			foreach (  $settings['list'] as $item ) {
 				$target = $item['list_sale_link']['is_external'] ? ' target="_blank"' : '';
 				$nofollow = $item['list_sale_link']['nofollow'] ? ' rel="nofollow"' : '';

@@ -1,0 +1,92 @@
+/*divine elementor iframe widgets style*/
+
+.divine-iframes-grid .list-grid-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.divine-iframes-grid .list-grid-wrapper > .list-item-wrapper {
+    margin: 10px;
+}
+.screensize_btns_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.screensize_btns_wrapper .screensize_toggle {
+    margin-bottom: 14px;
+}
+.screensize_btns_wrapper {
+    position: absolute;
+    top: 90px;
+    right: 22px;
+    color: #fff;
+    font-size: 29px;
+    cursor: pointer;
+}
+.copy-link {
+    position: absolute;
+    top: 220px;
+    right: 31px;
+    color: #fff;
+    font-size: 24px;
+}
+.divine-iframes-grid .list-item-wrapper{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+    width:20%;
+    margin-bottom: 35px !important;
+}
+.divine-iframes-grid .list-item-title > a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-top: 2px solid #80808045;
+}
+.divine-iframes-grid .list-item-wrapper .lightbox.tobi-zoom {
+    padding-bottom: 300px !important;
+    overflow-y:hidden !important;
+    height:400px;
+}
+.divine-iframes-grid .list-item-wrapper img{
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    transition: filter ease 0.3s;
+}
+.divine-iframes-grid .list-item-wrapper .tobi-zoom__icon {
+    display: none;
+}
+.divine-iframes-grid .button.sale-btn {
+    border-radius: 8px;
+}
+
+/*prev btn*/
+.divine-iframes-grid .demoBtn {
+        opacity: 0;
+        visibility: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        z-index:999;
+        background: #f7f6fb !important;
+        text-shadow: none !important;
+        font-weight: 400 !important;
+        color: #3a3840 !important;
+        padding: 0.5em 1em !important;
+        border-radius: 8px;
+        cursor: pointer;
+}
+.divine-iframes-grid .list-item-wrapper.active .demoBtn{
+    opacity: 1;
+    visibility: visible;
+}
+.divine-iframes-grid .list-item-wrapper {
+    position: relative;
+}
+.divine-iframes-grid .list-item-wrapper.active img{filter: brightness(0.7);}
+
+.divine-iframes-grid .sale-btn {
+    border-radius: 8px;
+}
