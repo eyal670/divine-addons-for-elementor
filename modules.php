@@ -48,12 +48,12 @@ class Modules {
 
     // enqueue your custom style/script as your requirements
     public function scripts_registered() {
-        wp_enqueue_style( 'divine-editor-style', plugin_dir_url( __FILE__ ) . 'assets/css/frontend.css');
+        // wp_enqueue_style( 'divine-editor-style', plugin_dir_url( __FILE__ ) . 'assets/css/frontend.css');
         wp_enqueue_style( 'divine-frontend-style', plugin_dir_url( __FILE__ ) . 'assets/css/editor.css');
-        wp_enqueue_style('iframe-grid-css', plugin_dir_url( __FILE__ ) . 'assets/css/iframe_grid.css' );
+        wp_enqueue_style('iframe-grid-css', plugin_dir_url( __FILE__ ) . 'assets/css/iframe_grid.css', array(), date("h:i:s") );
         wp_enqueue_style('iframe-list-tobi-css', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.css' );
         wp_enqueue_script('iframe-tobi-js', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.js', array(), '1.0.0', 'true' );
-        wp_enqueue_script('iframe-list-js', plugin_dir_url( __FILE__ ) . 'assets/js/iframe-list.js', array(), '1.0.3', 'true' );
+        wp_enqueue_script('iframe-list-js', plugin_dir_url( __FILE__ ) . 'assets/js/iframe-list.js', array(), date("h:i:s"), 'true' );
     }
 }
 Modules::get_instance()->init();
