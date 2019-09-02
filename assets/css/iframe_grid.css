@@ -7,7 +7,7 @@
 }
 
 .list-grid-wrapper>.list-item-wrapper {
-    margin: 10px
+    /* margin: 10px */
 }
 
 .screensize_btns_wrapper {
@@ -108,8 +108,8 @@
 /* #iframe contact form */
 .list-item-wrapper {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .15);
-    width: 20%;
-    margin-bottom: 35px !important;
+    /* width: 20%; */
+    /* margin-bottom: 35px !important; */
 }
 
 .list-item-title>a {

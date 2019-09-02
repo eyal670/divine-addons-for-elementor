@@ -24,6 +24,7 @@ class Widget_Popular_Posts extends Widget_Base {
 
 	protected function _register_controls() {
 
+		/* List Section */
 		$this->start_controls_section(
 			'list_section',
 			[
@@ -100,7 +101,37 @@ class Widget_Popular_Posts extends Widget_Base {
 			]
 		);
 		$this->end_controls_section();
+		/* End of List Section */
 
+		/* Layout Section */
+		$this->start_controls_section(
+			'layout_section',
+			[
+				'label' => __( 'Layout', 'plugin-name' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_responsive_control(
+			'num_of_columns',
+			[
+				'label' => __( 'Number of Columns', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 8,
+				'step' => 1,
+				'desktop_default' => 4,
+				'mobile_default' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .divine-iframes-grid.list-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}},1fr);display: grid;grid-column-gap: 50px;grid-row-gap: 50px;',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+		/* End of Layout Section */
+
+		/* Thumbnail Section */
 		$this->start_controls_section(
 			'img_size_section',
 			[
@@ -153,7 +184,9 @@ class Widget_Popular_Posts extends Widget_Base {
 			]
 		);
 		$this->end_controls_section();
+		/* End of thumbnail Section */
 
+		/* Info Section */
 		$this->start_controls_section(
 			'info_section',
 			[
@@ -176,11 +209,11 @@ class Widget_Popular_Posts extends Widget_Base {
 			]
 		);
 		$this->end_controls_section();
+		/* End of Info Section */
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-
 		if ( $settings['list'] ) {
 			echo '<div class="divine-iframes-grid list-grid-wrapper">';
 			foreach (  $settings['list'] as $item ) {
