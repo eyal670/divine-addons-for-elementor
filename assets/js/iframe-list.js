@@ -84,16 +84,16 @@ jQuery(document).ready(function () {
   }
 });
 
-/* reinit tobi after dom change by filter*/
-jQuery(document).ajaxStop(function () {
-  setLightboxClass();
-  setHover();
-  if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
-    var tobi = new Tobi();
-  } else {
-    console.log('elementor editor');
-  }
-});
+// /* reinit tobi after dom change by filter*/
+// jQuery(document).ajaxStop(function () {
+//   setLightboxClass();
+//   setHover();
+//   if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
+//     var tobi = new Tobi();
+//   } else {
+//     console.log('elementor editor');
+//   }
+// });
 
 function inIframe() {
   try {
