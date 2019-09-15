@@ -121,6 +121,11 @@
     border-top: 2px solid #80808045;
 }
 
+.title-btn-layout-br>a{
+  flex-direction: column;
+  align-items: unset;
+}
+
 .list-item-wrapper .lightbox.tobi-zoom {
     padding-bottom: 300px !important;
     overflow-y: hidden !important;

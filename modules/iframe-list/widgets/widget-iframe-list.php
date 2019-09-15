@@ -105,10 +105,10 @@ class Widget_Popular_Posts extends Widget_Base {
 
 		/* Layout Section */
 		$this->start_controls_section(
-			'layout_section',
+			'grid_layout_section',
 			[
-				'label' => __( 'Layout', 'plugin-name' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'label' => __( 'Grid', 'plugin-name' ),
+				'tab' => \Elementor\Controls_Manager::TAB_LAYOUT,
 			]
 		);
 
@@ -127,9 +127,117 @@ class Widget_Popular_Posts extends Widget_Base {
 				],
 			]
 		);
+		$this->add_responsive_control(
+			'columns_gap',
+			[
+				'label' => __( 'Columns Gap', 'divine-addons-for-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 200,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .divine-iframes-grid.list-grid-wrapper' => 'grid-column-gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'rows_gap',
+			[
+				'label' => __( 'Rows Gap', 'divine-addons-for-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 200,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .divine-iframes-grid.list-grid-wrapper' => 'grid-row-gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
-		/* End of Layout Section */
+		/* End of Grid Layout Section */
+
+		/* btn_title_layout_section Section */
+		$this->start_controls_section(
+			'btn_title_layout_section',
+			[
+				'label' => __( 'Button and Title', 'divine-addons-for-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_LAYOUT,
+			]
+		);
+
+		$this->add_control(
+			'btn_title_separated_rows',
+			[
+				'label' => __( 'Separate Rows for Title and Button', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'divine-addons-for-elementor' ),
+				'label_off' => __( 'No', 'divine-addons-for-elementor' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		$this->end_controls_section();
+		/* End of btn_txt_layout_section Section */
+
+		/* Btn Section */
+		$this->start_controls_section(
+			'btn_settings_section',
+			[
+				'label' => __( 'Button Settings', 'divine-addons-for-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'hide_btn',
+			[
+				'label' => __( 'Hide Button', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Hide', 'divine-addons-for-elementor' ),
+				'label_off' => __( 'Show', 'divine-addons-for-elementor' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
+			'btn_lable',
+			[
+				'label' => __( 'Button Lable', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Buy Now', 'divine-addons-for-elementor' ),
+				'placeholder' => __( 'Type your lable here', 'divine-addons-for-elementor' ),
+			]
+		);
+
+		$this->end_controls_section();
+		/* End of Btn Section */
 
 		/* Thumbnail Section */
 		$this->start_controls_section(
@@ -236,12 +344,21 @@ class Widget_Popular_Posts extends Widget_Base {
 					$thumbnail_size = Array ($settings['img_dimension']['width'], $settings['img_dimension']['height'] );
 				}
         $thumbnail_img = wp_get_attachment_image( $item['list_img']['id'], $thumbnail_size );
+				$btn_txt_layout_class = '';
+				$btn = '';
+				if('yes' == $settings['btn_title_separated_rows']){
+					$btn_txt_layout_class = 'title-btn-layout-br';
+				}
+				$btn_lable = $settings['btn_lable'];
+				if('yes' != $settings['hide_btn']){
+					$btn = '<button class="sale-btn">'.$btn_lable.'</button>';
+				}
 				echo '<div class="list-item-wrapper">';
 					echo '<div class="img-wrapper">
 									<a class="lightbox" data-type="iframe" '.$demo_href.'><span class="demoBtn">תצוגה מקדימה</span>'.$thumbnail_img.'</a>
 								</div>';
-					echo '<div class="list-item-title ifram-list-item-' . $item['_id'] . '">
-									<a '. $sale_href . ' ' . $target . $nofollow . '><h3>' . $item['list_title'] . '</h3><button class="sale-btn">Buy Now</button></a>
+					echo '<div class="list-item-title '.$btn_txt_layout_class.' ifram-list-item-' . $item['_id'] . '">
+									<a '. $sale_href . ' ' . $target . $nofollow . '><h3>' . $item['list_title'] . '</h3>'.$btn.'</a>
 								</div>';
 				echo '</div>';
 			}
