@@ -227,12 +227,12 @@ class Widget_Popular_Posts extends Widget_Base {
 		);
 
 		$this->add_control(
-			'btn_lable',
+			'btn_label',
 			[
-				'label' => __( 'Button Lable', 'divine-addons-for-elementor' ),
+				'label' => __( 'Button label', 'divine-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __( 'Buy Now', 'divine-addons-for-elementor' ),
-				'placeholder' => __( 'Type your lable here', 'divine-addons-for-elementor' ),
+				'placeholder' => __( 'Type your label here', 'divine-addons-for-elementor' ),
 			]
 		);
 
@@ -312,12 +312,203 @@ class Widget_Popular_Posts extends Widget_Base {
 			'info',
 			[
 				'type' => \Elementor\Controls_Manager::RAW_HTML,
-				'raw' => __( $html, 'plugin-name' ),
-				'content_classes' => 'your-class',
+				'raw' => __( $html, 'divine-addons-for-elementor' ),
 			]
 		);
 		$this->end_controls_section();
 		/* End of Info Section */
+
+		$this->start_controls_section(
+			'title_style_section',
+			[
+				'label' => __( 'Title', 'divine-addons-for-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Title Color', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .title',
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'btn_style_section',
+			[
+				'label' => __( 'Button', 'divine-addons-for-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->start_controls_tabs(
+			'btn_style_tabs'
+		);
+		$this->start_controls_tab(
+			'btn_style_normal_tab',
+			[
+				'label' => __( 'Normal', 'divine-addons-for-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'btn_text_color',
+			[
+				'label' => __( 'Label Color', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .sale-btn' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'btn_typography',
+				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .sale-btn',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'btn_background',
+				'label' => __( 'Background', 'divine-addons-for-elementor' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .sale-btn',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'btn_border',
+				'label' => __( 'Border', 'divine-addons-for-elementor' ),
+				'selector' => '{{WRAPPER}} .sale-btn',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'btn_shadow',
+				'label' => __( 'Box Shadow', 'divine-addons-for-elementor' ),
+				'selector' => '{{WRAPPER}} .sale-btn',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'btn_style_hover_tab',
+			[
+				'label' => __( 'Hover', 'divine-addons-for-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'btn_text_color_hvr',
+			[
+				'label' => __( 'Label Color', 'divine-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .sale-btn:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'btn_typography_hvr',
+				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .sale-btn:hover',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'btn_background_hvr',
+				'label' => __( 'Background', 'divine-addons-for-elementor' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .sale-btn:hover',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'btn_border_hvr',
+				'label' => __( 'Border', 'divine-addons-for-elementor' ),
+				'selector' => '{{WRAPPER}} .sale-btn:hover',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'btn_shadow_hvr',
+				'label' => __( 'Box Shadow', 'divine-addons-for-elementor' ),
+				'selector' => '{{WRAPPER}} .sale-btn:hover',
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'hr',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+
+		$this->add_control(
+			'radius',
+			[
+				'label' => __( 'Rounding Corners', 'divine-addons-for-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .sale-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function render() {
@@ -349,16 +540,16 @@ class Widget_Popular_Posts extends Widget_Base {
 				if('yes' == $settings['btn_title_separated_rows']){
 					$btn_txt_layout_class = 'title-btn-layout-br';
 				}
-				$btn_lable = $settings['btn_lable'];
+				$btn_label = $settings['btn_label'];
 				if('yes' != $settings['hide_btn']){
-					$btn = '<button class="sale-btn">'.$btn_lable.'</button>';
+					$btn = '<button class="sale-btn">'.$btn_label.'</button>';
 				}
 				echo '<div class="list-item-wrapper">';
 					echo '<div class="img-wrapper">
 									<a class="lightbox" data-type="iframe" '.$demo_href.'><span class="demoBtn">תצוגה מקדימה</span>'.$thumbnail_img.'</a>
 								</div>';
 					echo '<div class="list-item-title '.$btn_txt_layout_class.' ifram-list-item-' . $item['_id'] . '">
-									<a '. $sale_href . ' ' . $target . $nofollow . '><h3>' . $item['list_title'] . '</h3>'.$btn.'</a>
+									<a '. $sale_href . ' ' . $target . $nofollow . '><h3 class="title">' . $item['list_title'] . '</h3>'.$btn.'</a>
 								</div>';
 				echo '</div>';
 			}
