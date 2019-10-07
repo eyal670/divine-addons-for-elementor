@@ -1,5 +1,6 @@
 jQuery(document).ready(function () {
   if (!jQuery('.elementor-editor-active').length && !inIframe()) {
+    console.log('ftp is working');
     console.log('tobi is running');
     console.log('tobi: ' + jQuery.isFunction(Tobi));
     /* fix missing classes and attr for CPT elemnets grid */
@@ -10,37 +11,7 @@ jQuery(document).ready(function () {
 
     /*init lightbox*/
     var tobi = new Tobi();
-    jQuery('.tobi__close').after(`
-      <div class="screensize_btns_wrapper">
-      <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
-      <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
-      <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
-      <span class=\"copy-link fas fa-paste\"><span class="copy-tooltip">הקישור הועתק ללוח</span></span>
-      </div>
-      `);
-
-    /*add screen size preview btn*/
-    jQuery('.screensize_toggle_desktop').click(function () {
-      jQuery('.screensize_toggle').removeClass('active');
-      jQuery(this).addClass('active');
-      jQuery('iframe').animate({
-        'width': '85vw'
-      });
-    });
-    jQuery('.screensize_toggle_tablet').click(function () {
-      jQuery('.screensize_toggle').removeClass('active');
-      jQuery(this).addClass('active');
-      jQuery('iframe').animate({
-        'width': '750px'
-      });
-    });
-    jQuery('.screensize_toggle_mobile').click(function () {
-      jQuery('.screensize_toggle').removeClass('active');
-      jQuery(this).addClass('active');
-      jQuery('iframe').animate({
-        'width': '450px'
-      });
-    });
+    createBtns();
 
     /*thumbnail moving images on hover*/
     jQuery('.list-item-wrapper .img-wrapper').hover(
@@ -66,34 +37,71 @@ jQuery(document).ready(function () {
       }
     );
 
-    /* add copy to clipboard btn */
-    setTimeout(function () {
-      pre_filter();
-      jQuery('.tobi__next, .tobi__prev, .lightbox.tobi-zoom').click(function () {
-        // reset copy to clipboard icon
-        jQuery('.copy-link').attr('class', 'copy-link fas fa-paste');
-        console.log('reset copy icon');
-        jQuery('.iframecontact').removeClass('active');
-        setTimeout(get_iframe_src, 2000);
-      });
-      create_direct_link();
-    }, 3000);
-
   } else {
     console.log("don't load tobi");
   }
 });
 
-// /* reinit tobi after dom change by filter*/
-// jQuery(document).ajaxStop(function () {
-//   setLightboxClass();
-//   setHover();
-//   if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
-//     var tobi = new Tobi();
-//   } else {
-//     console.log('elementor editor');
-//   }
-// });
+/* reinit tobi after dom change by filter*/
+jQuery(document).ajaxStop(function () {
+  setLightboxClass();
+  createBtns();
+  // setHover();
+  // if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
+  //   var tobi = new Tobi();
+  // } else {
+  //   console.log('elementor editor');
+  // }
+});
+
+function createBtns() {
+  if (jQuery('.screensize_btns_wrapper').length) {
+    jQuery('.screensize_btns_wrapper').remove();
+  }
+  jQuery('.tobi__close').after(`
+      <div class="screensize_btns_wrapper">
+      <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
+      <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
+      <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
+      <span class=\"copy-link fas fa-paste\"><span class="copy-tooltip">הקישור הועתק ללוח</span></span>
+      </div>
+      `);
+
+  /*add screen size preview btn*/
+  jQuery('.screensize_toggle_desktop').click(function () {
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
+    jQuery('iframe').animate({
+      'width': '85vw'
+    });
+  });
+  jQuery('.screensize_toggle_tablet').click(function () {
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
+    jQuery('iframe').animate({
+      'width': '750px'
+    });
+  });
+  jQuery('.screensize_toggle_mobile').click(function () {
+    jQuery('.screensize_toggle').removeClass('active');
+    jQuery(this).addClass('active');
+    jQuery('iframe').animate({
+      'width': '450px'
+    });
+  });
+  /* add copy to clipboard btn */
+  setTimeout(function () {
+    pre_filter();
+    jQuery('.tobi__next, .tobi__prev, .lightbox.tobi-zoom').click(function () {
+      // reset copy to clipboard icon
+      jQuery('.copy-link').attr('class', 'copy-link fas fa-paste');
+      console.log('reset copy icon');
+      jQuery('.iframecontact').removeClass('active');
+      setTimeout(get_iframe_src, 2000);
+    });
+    create_direct_link();
+  }, 3000);
+}
 
 function inIframe() {
   try {
