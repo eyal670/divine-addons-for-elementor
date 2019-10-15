@@ -8,7 +8,7 @@ use ElementorPro\Classes\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_Post_navigation extends Widget_Base {
+class Widget_Divine_Post_navigation extends Widget_Base {
 
 	public function get_categories() {
 		return [ 'basic' ];
@@ -519,10 +519,11 @@ class Widget_Post_navigation extends Widget_Base {
 				$taxonomy = $settings[ $post_type . '_taxonomy' ];
 			}
 		}
+		$p = get_previous_post();
 		?>
 		<div class="elementor-post-navigation elementor-grid">
 			<div class="elementor-post-navigation__prev elementor-post-navigation__link">
-				<?php previous_post_link( '%link', $prev_arrow . '<span class="elementor-post-navigation__link__prev">' . $prev_label . $prev_title . '</span>', $in_same_term, '', $taxonomy ); ?>
+				<?php previous_post_link( '%link', $prev_arrow . '<span class="elementor-post-navigation__link__prev">'. $prev_label . $prev_title . '</span>'.get_the_post_thumbnail($p->ID,'thumbnail', array( 'class' => 'round' )), $in_same_term, '', $taxonomy ); ?>
 			</div>
 			<?php if ( 'yes' === $settings['show_borders'] ) : ?>
 				<div class="elementor-post-navigation__separator-wrapper">
@@ -543,4 +544,4 @@ class Widget_Post_navigation extends Widget_Base {
 	public function render_plain_content( $instance = [] ) {}
 
 }
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_Post_navigation() );
+\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_Divine_Post_navigation() );
