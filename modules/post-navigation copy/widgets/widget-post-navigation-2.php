@@ -11,7 +11,7 @@ class Widget_Divine_Post_navigation2 extends Widget_Base {
 
 	public function get_name() {
 
-		return 'divine-posts';
+		return 'divine-post-navigation-2';
 	}
 
 	public function get_title() {
