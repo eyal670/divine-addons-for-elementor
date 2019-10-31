@@ -1,6 +1,5 @@
 jQuery(document).ready(function () {
   if (!jQuery('.elementor-editor-active').length && !inIframe()) {
-    console.log('ftp is working');
     console.log('tobi is running');
     console.log('tobi: ' + jQuery.isFunction(Tobi));
     /* fix missing classes and attr for CPT elemnets grid */
@@ -286,7 +285,12 @@ function pre_filter() {
   var display = getUrlParameter('display');
 
   if (display) {
-    jQuery('a[data-elementor-open-lightbox][href="' + display + '"] img').click();
+    var elm = jQuery('a[data-elementor-open-lightbox][href="' + display + '"] img');
+    if(elm.length){
+      elm.click();
+    }else{
+      jQuery('a.tobi-zoom[href="' + display + '"] img').click();
+    }
   } else if (filter) {
     if (category) {
       jQuery('input.jet-checkboxes-list__input[name="category"]' + '[value="' + category + '"]').click();
