@@ -288,7 +288,7 @@ class Widget_Divine_Iframe_Grid extends Widget_Base {
 				'label' => __( 'Image Size', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'description' => $img_size,
-				'default' => 'thumbnail',
+				'default' => 'large',
 			]
 		);
 		$this->end_controls_section();
