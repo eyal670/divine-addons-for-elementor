@@ -13,6 +13,7 @@
 .screensize_btns_wrapper {
     display: flex;
     flex-direction: column;
+    direction: rtl;
 }
 
 .screensize_btns_wrapper .screensize_toggle {
@@ -165,16 +166,8 @@
     cursor: pointer;
 }
 
-.tobi__slider__slide__content[data-type="iframe"] iframe {
-    height: 80vh !important;
-}
-
 .tobi__slider {
     top: -50px !important;
-}
-
-.tobi__slider__slide__content[data-type="iframe"] {
-    max-height: 80vh !important;
 }
 
 .list-item-wrapper.active .demoBtn {

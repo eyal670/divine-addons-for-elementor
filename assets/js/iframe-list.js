@@ -2,10 +2,6 @@ jQuery(document).ready(function () {
   if (!jQuery('.elementor-editor-active').length && !inIframe()) {
     console.log('tobi is running');
     console.log('tobi: ' + jQuery.isFunction(Tobi));
-    /* fix missing classes and attr for CPT elemnets grid */
-    setTimeout(function () {
-      setLightboxClass();
-    }, 1500);
     setHover();
 
     /*init lightbox*/
@@ -19,17 +15,13 @@ jQuery(document).ready(function () {
         var wrapperHeight = jQuery(this).height();
         var imgHeight = jQuery(this).find('img').height();
         var moveTo = wrapperHeight - imgHeight;
-        //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
         moveTo += 'px';
-        //console.log('move: '+moveTo);
-        //console.log('hovered '+moveTo);
         jQuery(this).find('img').stop().animate({
           top: moveTo,
         }, 3000);
       },
       function () {
         jQuery(this).closest('.list-item-wrapper').removeClass('active');
-        //console.log('not hovered');
         jQuery(this).find('img').stop().animate({
           top: '0px',
         }, 1500);
@@ -41,18 +33,9 @@ jQuery(document).ready(function () {
   }
 });
 
-/* reinit tobi after dom change by filter*/
-jQuery(document).ajaxStop(function () {
-  setLightboxClass();
-  createBtns();
-  // setHover();
-  // if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
-  //   var tobi = new Tobi();
-  // } else {
-  //   console.log('elementor editor');
-  // }
-});
-
+/**
+ * init responsive display and copy link buttons
+ */
 function createBtns() {
   if (jQuery('.screensize_btns_wrapper').length) {
     jQuery('.screensize_btns_wrapper').remove();
@@ -102,28 +85,15 @@ function createBtns() {
   }, 3000);
 }
 
+/**
+ * check if current page is running inside an iframe
+ */
 function inIframe() {
   try {
     return window.self !== window.top;
   } catch (e) {
     return true;
   }
-}
-
-function setLightboxClass() {
-  console.log('setLightboxClass: ' + jQuery('.lightbox.tobi-zoom').length);
-  jQuery("a[data-elementor-open-lightbox]").attr('data-type', 'iframe').addClass("lightbox").click(function () {
-    if (!jQuery('.tobi .iframecontact').length) {
-      moveForm();
-    }
-  });
-  jQuery('.lightbox.tobi-zoom').click(function () {
-    if (!jQuery('.tobi .iframecontact').length) {
-      moveForm();
-    } else {
-      console.log('not moving form');
-    }
-  });
 }
 
 function setHover() {
@@ -133,27 +103,18 @@ function setHover() {
       var wrapperHeight = jQuery(this).height();
       var imgHeight = jQuery(this).find('img').height();
       var moveTo = wrapperHeight - imgHeight;
-      //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
       moveTo += 'px';
-      //console.log('move: '+moveTo);
-      //console.log('hovered '+moveTo);
       jQuery(this).find('img').stop().animate({
         top: moveTo,
       }, 3000);
     },
     function () {
       // jQuery( this ).closest('.list-item-wrapper').removeClass('active');
-      //console.log('not hovered');
       jQuery(this).find('img').stop().animate({
         top: '0px',
       }, 1500);
     }
   ).prepend('<span class="demoBtn">תצוגה מקדימה</span>');
-}
-
-function moveForm() {
-  jQuery('.tobi').append(jQuery('.iframecontact_wrapper').width(jQuery('.tobi__slider iframe').width()));
-  console.log('moving form');
 }
 
 /***/
@@ -192,17 +153,17 @@ function moveForm() {
       // Use this native browser method, if available.
       var rec = t.getBoundingClientRect(),
         tViz = isContained ?
-        rec.top - wPosition.top >= 0 && rec.top < vpHeight + wPosition.top :
-        rec.top >= 0 && rec.top < vpHeight,
+          rec.top - wPosition.top >= 0 && rec.top < vpHeight + wPosition.top :
+          rec.top >= 0 && rec.top < vpHeight,
         bViz = isContained ?
-        rec.bottom - wPosition.top > 0 && rec.bottom <= vpHeight + wPosition.top :
-        rec.bottom > 0 && rec.bottom <= vpHeight,
+          rec.bottom - wPosition.top > 0 && rec.bottom <= vpHeight + wPosition.top :
+          rec.bottom > 0 && rec.bottom <= vpHeight,
         lViz = isContained ?
-        rec.left - wPosition.left >= 0 && rec.left < vpWidth + wPosition.left :
-        rec.left >= 0 && rec.left < vpWidth,
+          rec.left - wPosition.left >= 0 && rec.left < vpWidth + wPosition.left :
+          rec.left >= 0 && rec.left < vpWidth,
         rViz = isContained ?
-        rec.right - wPosition.left > 0 && rec.right < vpWidth + wPosition.left :
-        rec.right > 0 && rec.right <= vpWidth,
+          rec.right - wPosition.left > 0 && rec.right < vpWidth + wPosition.left :
+          rec.right > 0 && rec.right <= vpWidth,
         vVisible = partial ? tViz || bViz : tViz && bViz,
         hVisible = partial ? lViz || rViz : lViz && rViz,
         vVisible = (rec.top < 0 && rec.bottom > vpHeight) ? true : vVisible,
@@ -242,6 +203,9 @@ function moveForm() {
 
 })(jQuery);
 
+/**
+ * get the current iframe src
+ */
 function get_iframe_src() {
   jQuery('.tobi iframe').each(function () {
     if (jQuery(this).visible(false, true)) {
@@ -261,6 +225,9 @@ function inIframe_gw() {
   }
 }
 
+/**
+ * auto open iframe from by url taken with direct copy linke btn
+ */
 function pre_filter() {
   //auto filter url template: https://themes.divinesites.co.il/fs/?filter=1&tag=99&cat=97%type=104
   var getUrlParameter = function getUrlParameter(sParam) {
@@ -277,33 +244,15 @@ function pre_filter() {
       }
     }
   };
-
-  var filter = getUrlParameter('filter');
-  var category = getUrlParameter('cat');
-  var post_tag = getUrlParameter('tag');
-  var page_type = getUrlParameter('type');
   var display = getUrlParameter('display');
-
   if (display) {
-    var elm = jQuery('a[data-elementor-open-lightbox][href="' + display + '"] img');
-    if(elm.length){
-      elm.click();
-    }else{
-      jQuery('a.tobi-zoom[href="' + display + '"] img').click();
-    }
-  } else if (filter) {
-    if (category) {
-      jQuery('input.jet-checkboxes-list__input[name="category"]' + '[value="' + category + '"]').click();
-    }
-    if (post_tag) {
-      jQuery('input.jet-checkboxes-list__input[name="post_tag"]' + '[value="' + post_tag + '"]').click();
-    }
-    if (page_type) {
-      jQuery('input.jet-checkboxes-list__input[name="typeofpage"]' + '[value="' + page_type + '"]').click();
-    }
+    jQuery('a.tobi-zoom[href="' + display + '"] img').click();
   }
 }
 
+/**
+ * init direct copy link btn
+ */
 function create_direct_link() {
   jQuery('.copy-link').click(function () {
     console.log('copy link');
@@ -315,6 +264,9 @@ function create_direct_link() {
   });
 }
 
+/**
+ * copy to clipboard
+ */
 function copyToClipboard() {
   var uri = window.location.href;
   var url = uri.split('?');

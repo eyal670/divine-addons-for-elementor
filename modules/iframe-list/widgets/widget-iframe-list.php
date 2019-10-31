@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_Popular_Posts extends Widget_Base {
+class Widget_Divine_Iframe_Grid extends Widget_Base {
 
 	public function get_categories() {
 		return [ 'basic' ];
@@ -11,7 +11,7 @@ class Widget_Popular_Posts extends Widget_Base {
 
 	public function get_name() {
 
-		return 'divine-posts';
+		return 'divine-iframe-grid-widget';
 	}
 
 	public function get_title() {
@@ -564,4 +564,4 @@ class Widget_Popular_Posts extends Widget_Base {
 	public function render_plain_content( $instance = [] ) {}
 
 }
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_Popular_Posts() );
+\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_Divine_Iframe_Grid() );

@@ -38,7 +38,7 @@ class Modules {
     public function widgets_registered() {
         // We check if the Elementor plugin has been installed / activated.
         if( defined('ELEMENTOR_PATH') && class_exists('Elementor\Widget_Base') ){
-            $path = DAE_PLUGIN_PLUGIN_PATH.'modules/*/widgets';
+            $path = DIVIGEW_PLUGIN_PLUGIN_PATH.'modules/*/widgets';
             $module_name = glob($path.'/widget-*.php');
             foreach ( $module_name as $widget ) {
                 require_once( $widget );
@@ -49,11 +49,11 @@ class Modules {
     // enqueue your custom style/script as your requirements
     public function scripts_registered() {
         // wp_enqueue_style( 'divine-editor-style', plugin_dir_url( __FILE__ ) . 'assets/css/frontend.css');
-        wp_enqueue_style( 'divine-frontend-style', plugin_dir_url( __FILE__ ) . 'assets/css/editor.css');
-        wp_enqueue_style('iframe-grid-css', plugin_dir_url( __FILE__ ) . 'assets/css/iframe_grid.css', array(), filemtime( plugin_dir_path( __FILE__ ) .  'assets/css/iframe_grid.css' ) );
-        wp_enqueue_style('iframe-list-tobi-css', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.css' );
-        wp_enqueue_script('iframe-tobi-js', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.js', array(), '1.0.0', 'true' );
-        wp_enqueue_script('iframe-list-js', plugin_dir_url( __FILE__ ) . 'assets/js/iframe-list.js', array(), date("h:i:s"), 'true' );
+        wp_enqueue_style( 'divigew-divine-frontend-style', plugin_dir_url( __FILE__ ) . 'assets/css/editor.css');
+        wp_enqueue_style('divigew-iframe-grid-css', plugin_dir_url( __FILE__ ) . 'assets/css/iframe_grid.css', array(), filemtime( plugin_dir_path( __FILE__ ) .  'assets/css/iframe_grid.css' ) );
+        wp_enqueue_style('divigew-iframe-list-tobi-css', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.css' );
+        wp_enqueue_script('divigew-iframe-tobi-js', plugin_dir_url( __FILE__ ) . 'assets/tobi-lightbox/tobi.min.js', array(), '1.0.0', 'true' );
+        wp_enqueue_script('divigew-iframe-list-js', plugin_dir_url( __FILE__ ) . 'assets/js/iframe-list.js', array(), date("h:i:s"), 'true' );
     }
 }
 Modules::get_instance()->init();
