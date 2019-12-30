@@ -193,3 +193,48 @@
 .sale-btn {
     border-radius: 8px;
 }
+
+@media only screen and (max-width: 500px) {
+    button.tobi__prev, button.tobi__next {
+    bottom: 10px !important;
+    margin: 0 15px 0 15px !important;
+    top: auto !important;
+    font-size:0.4rem !important;
+    background-color: #fff !important;
+    opacity: 1 !important;
+    border-radius: 50% !important;
+    }
+    button.tobi__prev svg, button.tobi__next svg{
+        stroke: #000 !important;
+    }
+    .screensize_btns_wrapper {
+        flex-direction: row;
+        width:150px !important;
+        justify-content: space-between;
+    }
+    .tobi__slider__slide__content[data-type="iframe"] {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        padding-top: 108px !important;
+    }
+    .tobi__slider__slide__content[data-type="iframe"] iframe {
+        width: 100vw !important;
+        height: 87vh !important;
+    }
+    .screensize_btns_wrapper {
+        top: 15px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .tobi>button.tobi__close {
+        top: -5px !important;
+    }
+    .tobi__counter {
+        top: 20px !important;
+    }
+    .tobi>button:disabled, .tobi>button[aria-hidden="true"]{
+        display: block !important;
+    }
+}
