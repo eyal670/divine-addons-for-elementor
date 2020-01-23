@@ -42,7 +42,8 @@ jQuery(document).ready(function () {
 });
 
 /* reinit tobi after dom change by filter*/
-jQuery(document).ajaxStop(function () {
+// jQuery(document).ajaxStop(function () {
+jQuery(document).ready(function () {
   setLightboxClass();
   createBtns();
   // setHover();
@@ -192,17 +193,17 @@ function moveForm() {
       // Use this native browser method, if available.
       var rec = t.getBoundingClientRect(),
         tViz = isContained ?
-        rec.top - wPosition.top >= 0 && rec.top < vpHeight + wPosition.top :
-        rec.top >= 0 && rec.top < vpHeight,
+          rec.top - wPosition.top >= 0 && rec.top < vpHeight + wPosition.top :
+          rec.top >= 0 && rec.top < vpHeight,
         bViz = isContained ?
-        rec.bottom - wPosition.top > 0 && rec.bottom <= vpHeight + wPosition.top :
-        rec.bottom > 0 && rec.bottom <= vpHeight,
+          rec.bottom - wPosition.top > 0 && rec.bottom <= vpHeight + wPosition.top :
+          rec.bottom > 0 && rec.bottom <= vpHeight,
         lViz = isContained ?
-        rec.left - wPosition.left >= 0 && rec.left < vpWidth + wPosition.left :
-        rec.left >= 0 && rec.left < vpWidth,
+          rec.left - wPosition.left >= 0 && rec.left < vpWidth + wPosition.left :
+          rec.left >= 0 && rec.left < vpWidth,
         rViz = isContained ?
-        rec.right - wPosition.left > 0 && rec.right < vpWidth + wPosition.left :
-        rec.right > 0 && rec.right <= vpWidth,
+          rec.right - wPosition.left > 0 && rec.right < vpWidth + wPosition.left :
+          rec.right > 0 && rec.right <= vpWidth,
         vVisible = partial ? tViz || bViz : tViz && bViz,
         hVisible = partial ? lViz || rViz : lViz && rViz,
         vVisible = (rec.top < 0 && rec.bottom > vpHeight) ? true : vVisible,
@@ -286,9 +287,9 @@ function pre_filter() {
 
   if (display) {
     var elm = jQuery('a[data-elementor-open-lightbox][href="' + display + '"] img');
-    if(elm.length){
+    if (elm.length) {
       elm.click();
-    }else{
+    } else {
       jQuery('a.tobi-zoom[href="' + display + '"] img').click();
     }
   } else if (filter) {
