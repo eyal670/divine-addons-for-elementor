@@ -51,6 +51,7 @@
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     transition: all .4s;
+    width: max-content;
 }
 
 .copy-tooltip:before {
@@ -236,5 +237,19 @@
     }
     .tobi>button:disabled, .tobi>button[aria-hidden="true"]{
         display: block !important;
+    }
+    .screensize_btns_wrapper {
+        width: 200px !important;
+    }
+    span.copy-tooltip {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translateY(40px);
+        margin: 0;
+        font-size: 16px;
+    }
+    .copy-tooltip:before {
+        display: none;
     }
 }
