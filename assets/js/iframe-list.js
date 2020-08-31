@@ -4,55 +4,62 @@ jQuery(document).ready(function () {
     console.log('tobi: ' + jQuery.isFunction(Tobi));
     /* fix missing classes and attr for CPT elemnets grid */
     setTimeout(function () {
+      console.log('1');
       setLightboxClass();
+      /*init lightbox*/
+      var tobi = new Tobi();
+      createBtns();
+      setHover();
     }, 1500);
-    setHover();
-
-    /*init lightbox*/
-    var tobi = new Tobi();
-    createBtns();
-
-    /*thumbnail moving images on hover*/
-    jQuery('.list-item-wrapper .img-wrapper').hover(
-      function () {
-        jQuery(this).closest('.list-item-wrapper').addClass('active');
-        var wrapperHeight = jQuery(this).height();
-        var imgHeight = jQuery(this).find('img').height();
-        var moveTo = wrapperHeight - imgHeight;
-        //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
-        moveTo += 'px';
-        //console.log('move: '+moveTo);
-        //console.log('hovered '+moveTo);
-        jQuery(this).find('img').stop().animate({
-          top: moveTo,
-        }, 3000);
-      },
-      function () {
-        jQuery(this).closest('.list-item-wrapper').removeClass('active');
-        //console.log('not hovered');
-        jQuery(this).find('img').stop().animate({
-          top: '0px',
-        }, 1500);
-      }
-    );
-
+    slide_on_hover();
   } else {
     console.log("don't load tobi");
   }
 });
 
 /* reinit tobi after dom change by filter*/
-// jQuery(document).ajaxStop(function () {
-jQuery(document).ready(function () {
+jQuery(document).ajaxStop(function () {
+  // jQuery(document).ready(function () {
+  console.log('2');
   setLightboxClass();
   createBtns();
-  // setHover();
-  // if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
-  //   var tobi = new Tobi();
-  // } else {
-  //   console.log('elementor editor');
-  // }
+  setHover();
+  slide_on_hover();
+  if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
+    var tobi = new Tobi();
+  } else {
+    console.log('elementor editor');
+  }
 });
+jQuery(document).ajaxStop(function () {
+  createBtns();
+});
+
+function slide_on_hover() {
+  /*thumbnail moving images on hover*/
+  jQuery('.list-item-wrapper .img-wrapper').hover(
+    function () {
+      jQuery(this).closest('.list-item-wrapper').addClass('active');
+      var wrapperHeight = jQuery(this).height();
+      var imgHeight = jQuery(this).find('img').height();
+      var moveTo = wrapperHeight - imgHeight;
+      //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
+      moveTo += 'px';
+      //console.log('move: '+moveTo);
+      //console.log('hovered '+moveTo);
+      jQuery(this).find('img').stop().animate({
+        top: moveTo,
+      }, 3000);
+    },
+    function () {
+      jQuery(this).closest('.list-item-wrapper').removeClass('active');
+      //console.log('not hovered');
+      jQuery(this).find('img').stop().animate({
+        top: '0px',
+      }, 1500);
+    }
+  );
+}
 
 function createBtns() {
   if (jQuery('.screensize_btns_wrapper').length) {
@@ -113,7 +120,7 @@ function inIframe() {
 
 function setLightboxClass() {
   console.log('setLightboxClass: ' + jQuery('.lightbox.tobi-zoom').length);
-  jQuery("a[data-elementor-open-lightbox]").attr('data-type', 'iframe').addClass("lightbox").click(function () {
+  jQuery(".divine-iframes a[data-elementor-open-lightbox], .divine-iframes .elementor-image a").attr('data-type', 'iframe').addClass("lightbox").click(function () {
     if (!jQuery('.tobi .iframecontact').length) {
       moveForm();
     }

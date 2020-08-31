@@ -34,3 +34,6 @@
     color: #fff;
     font-size: 24px
 }
+span.copy-tooltip{
+    width: max-content;
+}
