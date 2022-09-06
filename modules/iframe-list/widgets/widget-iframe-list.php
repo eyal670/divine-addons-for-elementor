@@ -331,10 +331,6 @@ class Widget_Popular_Posts extends Widget_Base {
 			[
 				'label' => __( 'Title Color', 'divine-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => \Elementor\Scheme_Color::get_type(),
-					'value' => \Elementor\Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
 				],
@@ -342,11 +338,10 @@ class Widget_Popular_Posts extends Widget_Base {
 		);
 
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .title',
 			]
 		);
@@ -376,10 +371,6 @@ class Widget_Popular_Posts extends Widget_Base {
 			[
 				'label' => __( 'Label Color', 'divine-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => \Elementor\Scheme_Color::get_type(),
-					'value' => \Elementor\Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .sale-btn' => 'color: {{VALUE}}',
 				],
@@ -391,7 +382,6 @@ class Widget_Popular_Posts extends Widget_Base {
 			[
 				'name' => 'btn_typography',
 				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .sale-btn',
 			]
 		);
@@ -438,10 +428,6 @@ class Widget_Popular_Posts extends Widget_Base {
 			[
 				'label' => __( 'Label Color', 'divine-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => \Elementor\Scheme_Color::get_type(),
-					'value' => \Elementor\Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .sale-btn:hover' => 'color: {{VALUE}}',
 				],
@@ -453,7 +439,6 @@ class Widget_Popular_Posts extends Widget_Base {
 			[
 				'name' => 'btn_typography_hvr',
 				'label' => __( 'Typography', 'divine-addons-for-elementor' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .sale-btn:hover',
 			]
 		);
