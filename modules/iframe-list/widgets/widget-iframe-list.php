@@ -531,7 +531,7 @@ class Widget_Popular_Posts extends Widget_Base {
 				}
 				echo '<div class="list-item-wrapper">';
 					echo '<div class="img-wrapper">
-									<a class="lightbox" data-type="iframe" '.$demo_href.'><span class="demoBtn">תצוגה מקדימה</span>'.$thumbnail_img.'</a>
+									<a class="lightbox" data-id="'. $item['_id'].'" data-type="iframe" '.$demo_href.'><span class="demoBtn">תצוגה מקדימה</span>'.$thumbnail_img.'</a>
 								</div>';
 					echo '<div class="list-item-title '.$btn_txt_layout_class.' ifram-list-item-' . $item['_id'] . '">
 									<a '. $sale_href . ' ' . $target . $nofollow . '><h3 class="title">' . $item['list_title'] . '</h3>'.$btn.'</a>

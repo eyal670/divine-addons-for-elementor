@@ -31,9 +31,6 @@ jQuery(document).ajaxStop(function () {
     console.log('elementor editor');
   }
 });
-jQuery(document).ajaxStop(function () {
-  createBtns();
-});
 
 function slide_on_hover() {
   /*thumbnail moving images on hover*/
@@ -67,12 +64,13 @@ function createBtns() {
   }
   jQuery('.tobi__close').after(`
       <div class="screensize_btns_wrapper">
-      <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
-      <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
-      <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
-      <span class=\"copy-link fas fa-paste\"><span class="copy-tooltip">הקישור הועתק ללוח</span></span>
+          <span class=\"screensize_toggle screensize_toggle_desktop fas fa-desktop\"></span>
+          <span class=\"screensize_toggle screensize_toggle_tablet fas fa-tablet-alt\"></span>
+          <span class=\"screensize_toggle screensize_toggle_mobile fas fa-mobile-alt\"></span>
+          <span class=\"copy-link fas fa-paste\"><span class="copy-tooltip">הקישור הועתק ללוח</span></span>
+          <a class="more-info-a" href="#" target="_blank"><span class=\"more-info-btn fas fa-info-circle\"><span class="more-info-tooltip">לחץ למידע נוסף</span></span></a>
       </div>
-      `);
+  `);
 
   /*add screen size preview btn*/
   jQuery('.screensize_toggle_desktop').click(function () {
@@ -105,6 +103,7 @@ function createBtns() {
       console.log('reset copy icon');
       jQuery('.iframecontact').removeClass('active');
       setTimeout(get_iframe_src, 2000);
+      set_more_info_link();
     });
     create_direct_link();
   }, 3000);
@@ -157,6 +156,9 @@ function setHover() {
       }, 1500);
     }
   ).prepend('<span class="demoBtn">תצוגה מקדימה</span>');
+    jQuery('.demoBtn').click(function(){
+        set_more_info_link();
+    });
 }
 
 function moveForm() {
@@ -321,6 +323,31 @@ function create_direct_link() {
       jQuery('.copy-link').removeClass('show-tip');
     }, 3500);
   });
+}
+
+function get_more_info_link() {
+    console.log('more info link');
+    // jQuery('.info-link').attr('href',);
+    var link = '';
+    var iframe_src = jQuery('.tobi iframe').each(function () {
+        if (jQuery(this).visible(false, true)) {
+           iframe = jQuery(this).attr("src");
+            var id = jQuery('a[href="'+iframe+'"]').attr('data-id');
+            if(!id){
+                link = jQuery('a[href="'+iframe+'"]').closest('.elementor-widget-wrap').find('a.premium-button').attr('href');
+            }else{
+                link = jQuery('.ifram-list-item-'+id+' > a').attr('href');
+            }
+            console.log('info link: '+link);
+        }
+    });
+    return link;
+}
+
+function set_more_info_link(){
+    setTimeout(function(){
+        jQuery('a.more-info-a').attr('href',get_more_info_link());
+    },1500);
 }
 
 function copyToClipboard() {
