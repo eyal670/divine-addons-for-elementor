@@ -7,7 +7,9 @@ jQuery(document).ready(function () {
       console.log('1');
       setLightboxClass();
       /*init lightbox*/
-      var tobi = new Tobi();
+        if( jQuery('.divine-iframes-grid').length){
+          var tobi = new Tobi();
+        }
       createBtns();
       setHover();
     }, 1500);
@@ -21,15 +23,17 @@ jQuery(document).ready(function () {
 jQuery(document).ajaxStop(function () {
   // jQuery(document).ready(function () {
   console.log('2');
-  setLightboxClass();
-  createBtns();
-  setHover();
-  slide_on_hover();
-  if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
-    var tobi = new Tobi();
-  } else {
-    console.log('elementor editor');
-  }
+    setTimeout(function (){
+      setLightboxClass();
+      setHover();
+      slide_on_hover();
+      if (!jQuery('.elementor-editor-active').length && !inIframe_gw()) {
+        var tobi = new Tobi();
+          createBtns();
+      } else {
+        console.log('elementor editor');
+      }
+    },1500);
 });
 
 function slide_on_hover() {
