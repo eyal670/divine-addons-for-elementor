@@ -138,30 +138,35 @@ function setLightboxClass() {
 }
 
 function setHover() {
-  jQuery('a[data-type="iframe"]').hover(
-    function () {
-      // jQuery( this ).closest('.list-item-wrapper').addClass('active');
-      var wrapperHeight = jQuery(this).height();
-      var imgHeight = jQuery(this).find('img').height();
-      var moveTo = wrapperHeight - imgHeight;
-      //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
-      moveTo += 'px';
-      //console.log('move: '+moveTo);
-      //console.log('hovered '+moveTo);
-      jQuery(this).find('img').stop().animate({
-        top: moveTo,
-      }, 3000);
-    },
-    function () {
-      // jQuery( this ).closest('.list-item-wrapper').removeClass('active');
-      //console.log('not hovered');
-      jQuery(this).find('img').stop().animate({
-        top: '0px',
-      }, 1500);
-    }
-  ).prepend('<span class="demoBtn">תצוגה מקדימה</span>');
-    jQuery('.demoBtn').click(function(){
-        set_more_info_link();
+    jQuery('a[data-type="iframe"]').each(function(){
+        jQuery(this).hover(
+            function () {
+              // jQuery( this ).closest('.list-item-wrapper').addClass('active');
+              var wrapperHeight = jQuery(this).height();
+              var imgHeight = jQuery(this).find('img').height();
+              var moveTo = wrapperHeight - imgHeight;
+              //console.log(wrapperHeight+' - '+imgHeight+' = '+moveTo);
+              moveTo += 'px';
+              //console.log('move: '+moveTo);
+              //console.log('hovered '+moveTo);
+              jQuery(this).find('img').stop().animate({
+                top: moveTo,
+              }, 3000);
+            },
+            function () {
+              // jQuery( this ).closest('.list-item-wrapper').removeClass('active');
+              //console.log('not hovered');
+              jQuery(this).find('img').stop().animate({
+                top: '0px',
+              }, 1500);
+            }
+        );
+        jQuery('.demoBtn').click(function(){
+            set_more_info_link();
+        });
+        if(!jQuery(this).find('.demoBtn').length){
+            jQuery(this).prepend('<span class="demoBtn">תצוגה מקדימה</span>');
+        }
     });
 }
 
